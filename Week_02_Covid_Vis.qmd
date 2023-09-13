@@ -1,7 +1,7 @@
 ---
 title: "Week 02: COVID Visualization Activity"
 date: "September, 11 2023"
-author: "**`[[`**Your Name**`]]`**"
+author: "Shreyas Puducheri"
 ---
 
 Today, we'll be working with a data set related to COVID.
@@ -36,6 +36,22 @@ covid_data_count |>
 ```
 
 1. Write code for a plot and describe what you observe?
+```{r}
+covid_data_long |> 
+  filter(race == "Total") |> 
+ggplot(aes(x = date, y= count, color = count_type)) + geom_line() + scale_y_continuous(trans='log10') + facet_wrap(~state, ncol = 8)
+
+```
+I observe 3 different line plots for cases, deaths, and hospitalizations for each state. the y-axis is logarithmic. the number of cases, deaths, hospitalizations, and tests all increase over time.
+
 2. Are there any conclusions you can draw?
+
+The conclusion I can draw is that in most states, the number of deaths may closely follow the number of hospitalizations. Additionally, the number of deaths and hospitalizations may be proportional to the number of cases.
+
 3. What were you not able to do due to not having the R knowledge?
+
+I was not able to perform statistical analyses, like calculating correlations. Also, I was unable to compute new values, such as the sum of all the states' counts to create a national count. 
+
 4. What other data would be useful to better understand this data?
+
+It would have been more useful if more Covid testing data were collected. For most states, testing data was not collected, limiting the validity of the number of cases. It would have been more useful to plot the proportion of cases of total tests that were positive rather than just the number of positive cases.
